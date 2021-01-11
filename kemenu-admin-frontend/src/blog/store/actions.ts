@@ -16,6 +16,12 @@ export const findAllBlogs: ActionHandler<BlogState, any> = (context: ActionConte
     }
 };
 
+export const clearBlogs: ActionHandler<BlogState, any> = (context: ActionContext<BlogState, any>) => {
+    context.commit('EMPTY_BLOGS');
+    context.commit('SET_LOADING_BLOGS', true);
+}
+
 export const blogActions: ActionTree<BlogState, any> = {
-    findAllBlogs: findAllBlogs
+    findAllBlogs: findAllBlogs,
+    clearBlogs: clearBlogs
 };

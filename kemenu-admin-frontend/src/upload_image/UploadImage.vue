@@ -1,12 +1,12 @@
 <template>
-  <label for="inputImageUrl" class="form-label p-2">
+  <label for="input-image-url" class="form-label p-2">
     <span v-if="!loading">Upload Image</span>
     <span v-else>
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       Uploading...
     </span>
   </label>
-  <input type="file" ref="file" class="form-control" id="inputImageUrl" @change="uploadImage">
+  <input type="file" ref="file" class="form-control" id="input-image-url" @change="uploadImage">
   <div class="form-text">{{ imageUrl }}</div>
 </template>
 
