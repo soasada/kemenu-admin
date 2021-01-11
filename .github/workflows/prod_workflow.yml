@@ -116,7 +116,7 @@ jobs:
           git config --global user.name 'Nicolas Vargas Ortega'
           git config --global user.email 'soasada@users.noreply.github.com'
           git commit -am "CI/CD: $JAR_NAME artifact deployed"
-          git pull origin master
+          git pull origin main
           git push
 
   deploy_frontend:
