@@ -1,0 +1,24 @@
+server:
+  port: 8086
+  address: 127.0.0.1
+
+app:
+  version: @project.version@
+  secret: ${JWT_SECRET}
+  refresh: ${JWT_SECRET_REFRESH}
+  cors: https://admin.kemenu.com
+  admin:
+    username: "nvortega92@gmail.com"
+    password: ${FIRST_ADMIN_PASSWORD}
+  recaptcha:
+    public: 6LeuEc0ZAAAAAFgpSVx07WdyDSDBi9pKIJTob2ir
+    secret: ${RECAPTCHA_SECRET}
+  cloudinary:
+    key: ${CLOUDINARY_KEY}
+    secret: ${CLOUDINARY_SECRET}
+    cloudname: ${CLOUDINARY_CLOUDNAME}
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_DB_USER_KEMENU}:${MONGO_DB_PWD_KEMENU}@localhost:27017/${MONGO_DB_NAME_KEMENU}

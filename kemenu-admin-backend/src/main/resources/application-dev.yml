@@ -1,0 +1,24 @@
+server:
+  port: 8086
+  address: 127.0.0.1
+
+app:
+  version: @project.version@
+  secret: secret
+  refresh: refresh
+  cors: http://localhost:8086
+  admin:
+    username: "admin@example.com"
+    password: "adminPassword"
+  recaptcha:
+    public: 6LeuEc0ZAAAAAFgpSVx07WdyDSDBi9pKIJTob2ir
+    secret: secret
+  cloudinary:
+    key: key
+    secret: secret
+    cloudname: cloudname
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:password@localhost:27018/kemenudb

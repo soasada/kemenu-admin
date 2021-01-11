@@ -1,0 +1,2 @@
+KEMENUADMINPID=$(~/jdk/bin/jps -l | grep kemenu-admin-backend-.*.jar | awk '{print $1}')
+if [ -n "$KEMENUADMINPID" ]; then echo "Killing app with PID $KEMENUADMINPID" && kill -9 $KEMENUADMINPID; else echo 'App not running'; fi
