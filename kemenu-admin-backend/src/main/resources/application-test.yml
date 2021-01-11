@@ -12,11 +12,11 @@ app:
     password: "adminPassword"
   recaptcha:
     public: 6LeuEc0ZAAAAAFgpSVx07WdyDSDBi9pKIJTob2ir
-    secret: ${RECAPTCHA_SECRET}
+    secret: secret
   cloudinary:
-    key: ${CLOUDINARY_KEY}
-    secret: ${CLOUDINARY_SECRET}
-    cloudname: ${CLOUDINARY_CLOUDNAME}
+    key: key
+    secret: secret
+    cloudname: cloudname
 
 spring:
   data:

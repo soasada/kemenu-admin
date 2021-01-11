@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.44 (11-01-2021)
+
+### Frontend
+
+* Add `v-model` to `UploadImage`.
+
 ## 1.0.43 (11-01-2021)
 
 Public release of the KEMENU admin panel.

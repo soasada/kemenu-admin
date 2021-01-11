@@ -7,7 +7,7 @@
       </div>
 
       <div class="mb-3">
-        <UploadImage @url="onUrl($event)"/>
+        <UploadImage v-model="blogForm.url"/>
       </div>
 
       <div class="mb-3">
@@ -27,19 +27,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import UploadImage from "@/upload_image/UploadImage.vue";
+import UploadImage from '@/upload_image/UploadImage.vue';
 
 export default defineComponent({
   name: 'BlogCreate',
   components: {
     UploadImage
-  },
-  setup() {
-    const onUrl = (url: string) => {
-      console.log(url);
-    };
-
-    return {onUrl};
   },
   data() {
     return {

@@ -12,12 +12,13 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
-import {useStore} from "vuex";
-import UploadImageService from "@/upload_image/UploadImageService";
+import {useStore} from 'vuex';
+import UploadImageService from '@/upload_image/UploadImageService';
 
 export default defineComponent({
-  emits: ['url'],
+  emits: ['update:modelValue'],
   name: 'UploadImage',
+  props: ['modelValue'],
   setup(props, context) {
     const store = useStore();
     const loading = ref(false);
@@ -30,7 +31,7 @@ export default defineComponent({
         if (imageFile.type.indexOf('image') !== -1) {
           loading.value = true;
           imageUrl.value = await UploadImageService.upload(imageFile, store.getters.getAccessToken);
-          context.emit('url', imageUrl.value);
+          context.emit('update:modelValue', imageUrl.value);
           loading.value = false;
         }
       }

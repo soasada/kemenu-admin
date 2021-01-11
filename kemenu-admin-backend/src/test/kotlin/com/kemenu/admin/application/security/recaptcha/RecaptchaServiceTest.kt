@@ -15,7 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.test.StepVerifier
 
 @SpringBootTest
-@ActiveProfiles(profiles = ["dev"])
+@ActiveProfiles(profiles = ["test"])
 internal class RecaptchaServiceTest(
         @Autowired private val jsonUtils: JsonUtils
 ) {

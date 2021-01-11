@@ -1,4 +1,4 @@
-import HttpClient from "@/http/HttpClient";
+import HttpClient from '@/http/HttpClient';
 
 export default class UploadImageService {
     private static ENDPOINT = '/v1/upload/image';
