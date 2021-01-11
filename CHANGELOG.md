@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.42 (11-01-2021)
+## 1.0.43 (11-01-2021)
 
 Public release of the KEMENU admin panel.
 
