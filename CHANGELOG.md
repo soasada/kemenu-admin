@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.42 (11-01-2021)
+
+Public release of the KEMENU admin panel.
+
+### Frontend
+
+* Add quick access for frontend commands in README.
+
 ## 1.0.36 (8-1-2021)
 
 ### Backend
