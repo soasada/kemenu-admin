@@ -52,6 +52,7 @@ export default defineComponent({
     const onDelete = (admin: AdminResponse) => {
       HttpClient.delete('/v1/admins', admin.id, store.getters.getAccessToken)
           .then(() => {
+            loading.value = true;
             AdminService.findAll(store.getters.getAccessToken)
                 .then(response => {
                   admins.value = response;
