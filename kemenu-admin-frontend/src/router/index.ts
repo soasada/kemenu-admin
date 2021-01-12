@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router';
 import blog from '@/blog';
 import customers from '@/customers';
+import admin from '@/admin';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -13,30 +14,13 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Dashboard',
         component: () => import(/* webpackChunkName: "dashboard" */ '../dashboard/Dashboard.vue'),
         meta: {requiresAuth: true}
-    },
-    {
-        path: '/admin/management',
-        name: 'AdminManagement',
-        component: () => import(/* webpackChunkName: "adminManagement" */ '../admin/AdminManagement.vue'),
-        meta: {requiresAuth: true}
-    },
-    {
-        path: '/create/admin',
-        name: 'CreateAdminUser',
-        component: () => import(/* webpackChunkName: "createAdminUser" */ '../admin/CreateAdminUser.vue'),
-        meta: {requiresAuth: true}
-    },
-    {
-        path: '/admin/user/:id',
-        name: 'EditAdminUser',
-        component: () => import(/* webpackChunkName: "editAdminUser" */ '../admin/EditAdminUser.vue'),
-        meta: {requiresAuth: true}
     }
 ];
 
 const finalRoutes = routes
     .concat(blog)
-    .concat(customers);
+    .concat(customers)
+    .concat(admin);
 
 const router = createRouter({
     history: createWebHashHistory(),

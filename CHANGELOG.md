@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.45 (12-01-2021)
+
+### Frontend
+
+* Add deletion for admins.
+
 ## 1.0.44 (11-01-2021)
 
 ### Frontend

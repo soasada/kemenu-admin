@@ -21,6 +21,7 @@ import BorderBottomTitle from '@/layout/BorderBottomTitle.vue';
 import ResponsiveTable from '@/responsive_table/ResponsiveTable.vue';
 import HttpClient from '@/http/HttpClient';
 import AdminResponse from '@/admin/AdminResponse';
+import AdminService from '@/admin/AdminService';
 
 export default defineComponent({
   name: 'AdminManagement',
@@ -34,26 +35,40 @@ export default defineComponent({
     const loading = ref(true);
     const router = useRouter();
 
-    HttpClient.get('/v1/admins', store.getters.getAccessToken).then((response: Response) => {
-      response.json().then((adminResponse: AdminResponse[]) => {
-        admins.value = adminResponse;
-        loading.value = false;
-      }).catch((error) => {
-        console.log(error);
-        loading.value = false;
-      });
-    });
+    AdminService.findAll(store.getters.getAccessToken)
+        .then(response => {
+          admins.value = response;
+          loading.value = false;
+        })
+        .catch(error => {
+          console.log(error);
+          loading.value = false;
+        });
 
     const onEdit = (admin: AdminResponse) => {
       router.push('/admin/user/' + admin.id);
     };
 
     const onDelete = (admin: AdminResponse) => {
-      console.log('Deleting: ' + admin.email);
+      HttpClient.delete('/v1/admins', admin.id, store.getters.getAccessToken)
+          .then(() => {
+            AdminService.findAll(store.getters.getAccessToken)
+                .then(response => {
+                  admins.value = response;
+                  loading.value = false;
+                })
+                .catch(error => {
+                  console.log(error);
+                  loading.value = false;
+                });
+          })
+          .catch(error => {
+            console.log(error);
+          });
     };
 
     const createAdmin = () => {
-      router.push('/create/admin');
+      router.push({name: 'CreateAdminUser'});
     }
 
     return {store, admins, loading, onEdit, onDelete, createAdmin};
