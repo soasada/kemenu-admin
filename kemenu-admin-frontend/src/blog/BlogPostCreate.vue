@@ -1,6 +1,6 @@
 <template>
-  <div class="blog-create">
-    <BorderBottomTitle title="Create first Blog post"/>
+  <div class="blog-post-create">
+    <BorderBottomTitle title="Create a Blog post"/>
 
     <form @submit.prevent="sendForm">
       <div class="mb-3">
@@ -11,10 +11,6 @@
       <div class="mb-3">
         <label for="input-blog-content" class="form-label">Content</label>
         <textarea class="form-control" id="input-blog-content" rows="3" v-model="blogRequest.content"></textarea>
-      </div>
-
-      <div class="mb-3">
-        <UploadImage v-model="blogRequest.imageUrl"/>
       </div>
 
       <div class="mb-3">
