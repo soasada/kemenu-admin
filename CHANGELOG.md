@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.48 (14-01-2021)
+
+### Backend
+
+* New service created for blog post creation.
+
+### Frontend
+
+* Form for blog post creation.
+
 ## 1.0.47 (12-01-2021)
 
 ### Frontend

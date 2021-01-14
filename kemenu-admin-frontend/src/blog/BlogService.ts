@@ -17,6 +17,12 @@ export default class BlogService {
             .catch(e => console.error(e));
     }
 
+    static createPost(id: string, newBlog: BlogRequest, token: string, onSuccess: () => void): void {
+        CRUDService.create(BlogService.ENDPOINT + '/' + id + '/post', newBlog, token)
+            .then(onSuccess)
+            .catch(e => console.error(e));
+    }
+
     static update(newBlog: BlogResponse, token: string, router: UnwrapRef<Router>): void {
         CRUDService.update(BlogService.ENDPOINT + '/' + newBlog.id, newBlog, token)
             .then(() => router.push('/blog'))

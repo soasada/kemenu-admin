@@ -2,6 +2,8 @@
   <div class="blog-update">
     <BorderBottomTitle title="Updating Blog"/>
 
+    <button type="button" class="btn btn-primary btn-lg mb-5" @click="createBlogPost">Create Blog Post</button>
+
     <ul class="list-group">
       <li class="list-group-item" v-for="post in posts" :key="post.id">
         <PostItem :post="post"/>
@@ -13,7 +15,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import BorderBottomTitle from '@/layout/BorderBottomTitle.vue';
-import {useRoute} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import PostItem from '@/blog/PostItem.vue';
 import {useStore} from 'vuex';
 
@@ -26,12 +28,18 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
     const blogId = route.params.id;
 
-    const findBlog = store.getters.findBlog
-    const posts = findBlog(blogId).posts
+    const findBlog = store.getters.findBlog;
+    const blog = findBlog(blogId);
+    const posts = blog.posts;
 
-    return {posts};
+    const createBlogPost = () => {
+      router.push({path: '/blog/' + blogId + '/post', query: {imageUrl: blog.imageUrl}});
+    };
+
+    return {posts, createBlogPost};
   }
 });
 </script>

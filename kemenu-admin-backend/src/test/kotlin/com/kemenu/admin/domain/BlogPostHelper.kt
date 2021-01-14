@@ -11,7 +11,7 @@ object BlogPostHelper {
     fun random(): BlogPost {
         return BlogPost(
                 ObjectId().toString(),
-                UUID.randomUUID().toString(),
+                "https://example.com",
                 mapOf()
         )
     }
@@ -19,7 +19,7 @@ object BlogPostHelper {
     fun random(post: Post): BlogPost {
         return BlogPost(
                 ObjectId().toString(),
-                UUID.randomUUID().toString(),
+                "https://example.com",
                 mapOf(Pair(post.locale, post))
         )
     }
