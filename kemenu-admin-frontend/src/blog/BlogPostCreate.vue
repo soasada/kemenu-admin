@@ -29,23 +29,22 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import UploadImage from '@/upload_image/UploadImage.vue';
 import BlogRequest from '@/blog/BlogRequest';
 import {useStore} from 'vuex';
 import BlogService from '@/blog/BlogService';
 import BorderBottomTitle from '@/layout/BorderBottomTitle.vue';
-import {useRouter} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 
 export default defineComponent({
   name: 'BlogCreate',
   components: {
-    UploadImage,
     BorderBottomTitle
   },
   setup() {
     const store = useStore();
+    const route = useRoute();
     const router = useRouter();
-    return {store, router};
+    return {store, route, router};
   },
   data() {
     return {
@@ -54,9 +53,12 @@ export default defineComponent({
   },
   methods: {
     sendForm() {
+      const selfRoute = this.route;
+      const blogId = selfRoute.params.id as string;
+      this.blogRequest.imageUrl = selfRoute.query.imageUrl as string;
       const token = this.store.getters.getAccessToken;
       this.store.dispatch('clearBlogs'); // this should be inside the service
-      BlogService.create(this.blogRequest, token, () => this.router.push('/blog'));
+      BlogService.createPost(blogId, this.blogRequest, token, () => this.router.push('/blog'));
     }
   }
 });
