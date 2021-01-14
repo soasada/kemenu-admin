@@ -1,5 +1,6 @@
 package com.kemenu.admin.application.blog
 
+import com.kemenu.admin.application.HttpExceptionFactory.conflict
 import com.kemenu.admin.application.HttpExceptionFactory.notFound
 import com.kemenu.admin.application.HttpExceptionFactory.server
 import com.kemenu.admin.application.security.IntrospectiveService
@@ -53,6 +54,27 @@ class BlogController(
         return repository.save(blogToSave)
                 .doOnError {
                     logger.error("Error while creating blog post", it)
+                    throw it
+                }
+    }
+
+    @PostMapping("/{id}/post")
+    fun createPost(@PathVariable id: String,
+                   @RequestBody @Valid request: BlogPostRequest,
+                   @RequestHeader(value = "Authorization") token: String): Mono<BlogPost> {
+        val post = PostMapper.toNewEntity(introspectiveService.whoAmI(token), request)
+        return repository
+                .findById(id)
+                .switchIfEmpty { Mono.error(notFound()) }
+                .flatMap { blog ->
+                    if (blog.getPost(request.locale) != null) {
+                        return@flatMap Mono.error(conflict())
+                    }
+                    val blogWithPost = blog.addPost(post)
+                    repository.save(blogWithPost).doOnError { throw it }
+                }
+                .doOnError {
+                    logger.error("Error while updating blog post", it)
                     throw it
                 }
     }

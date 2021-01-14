@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.test.web.reactive.server.expectBodyList
 import reactor.core.publisher.Mono
 
@@ -128,5 +129,46 @@ class BlogIntegrationTest(
                 .header(HttpHeaders.AUTHORIZATION, accessToken())
                 .exchange()
                 .expectStatus().isOk
+    }
+
+    @Test
+    fun `Should add a new post into an existing blog`() {
+        val locale = "en"
+        val blog = BlogPostHelper.random()
+        repository.save(blog).block()
+        val request = BlogPostHelper.request(locale)
+
+        webTestClient
+                .post().uri("/v1/blog/${blog.id}/post")
+                .body(Mono.just(request), BlogPostRequest::class.java)
+                .header(HttpHeaders.AUTHORIZATION, accessToken())
+                .exchange()
+                .expectStatus().isOk
+                .expectBody(BlogPost::class.java)
+                .returnResult()
+                .responseBody
+
+        val afterPostCreation = BlogPostHelper.find(webTestClient, accessToken(), blog.id)
+
+        assertEquals(request.title, afterPostCreation?.getPost(locale)?.title)
+        assertEquals(request.content, afterPostCreation?.getPost(locale)?.content)
+        assertEquals(request.imageUrl, afterPostCreation?.imageUrl)
+        assertEquals(request.locale, afterPostCreation?.getPost(locale)?.locale)
+    }
+
+    @Test
+    fun `Should return CONFLICT if we try to create a new post for an already existing blog that has the post, clients should use PUT instead`() {
+        val locale = "en"
+        val post = PostHelper.random(locale)
+        val blog = BlogPostHelper.random(post)
+        repository.save(blog).block()
+        val request = BlogPostHelper.request(locale)
+
+        webTestClient
+                .post().uri("/v1/blog/${blog.id}/post")
+                .body(Mono.just(request), BlogPostRequest::class.java)
+                .header(HttpHeaders.AUTHORIZATION, accessToken())
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.CONFLICT)
     }
 }
