@@ -26,7 +26,11 @@ describe('UploadImage.vue', () => {
             }
         });
         const input = wrapper.find('input');
-        await input.setValue(new File([''], 'example.png', {type: 'image/png'}));
-        expect(wrapper.emitted()['update:modelValue']).toBeDefined();
+        (wrapper.vm as any).file = {
+            files: [new File([''], 'example.png', {type: 'image/png'})]
+        };
+        await input.trigger('change');
+        expect(wrapper.emitted()).toHaveProperty('update:modelValue');
+        expect((wrapper.emitted()['update:modelValue'][0] as String[])[0]).toStrictEqual(expectedURL);
     });
 });
