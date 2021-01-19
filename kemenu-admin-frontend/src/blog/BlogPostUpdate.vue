@@ -1,6 +1,6 @@
 <template>
   <div class="blog-post-create">
-    <BorderBottomTitle title="Create a Blog post"/>
+    <BorderBottomTitle title="Update a Blog post"/>
 
     <form @submit.prevent="sendForm">
       <div class="mb-3">
@@ -36,7 +36,7 @@ import BorderBottomTitle from '@/layout/BorderBottomTitle.vue';
 import {useRoute, useRouter} from 'vue-router';
 
 export default defineComponent({
-  name: 'BlogPostCreate',
+  name: 'BlogPostUpdate',
   components: {
     BorderBottomTitle
   },

@@ -24,6 +24,12 @@ const blogRoutes: Array<RouteRecordRaw> = [
         name: 'BlogPostCreate',
         component: () => import(/* webpackChunkName: "blogPostCreate" */ './BlogPostCreate.vue'),
         meta: {requiresAuth: true}
+    },
+    {
+        path: '/blog/:blogId/post/:postId/update',
+        name: 'BlogPostUpdate',
+        component: () => import(/* webpackChunkName: "blogPostUpdate" */ './BlogPostUpdate.vue'),
+        meta: {requiresAuth: true}
     }
 ];
 
