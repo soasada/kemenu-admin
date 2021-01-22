@@ -3,6 +3,7 @@ package com.kemenu.admin.application.blog
 import com.kemenu.admin.domain.BlogPost
 import com.kemenu.admin.domain.Post
 import org.bson.types.ObjectId
+import java.time.Instant
 
 object BlogPostMapper {
 
@@ -11,6 +12,6 @@ object BlogPostMapper {
     }
 
     fun toUpdateEntity(old: BlogPost, request: BlogPostRequest): BlogPost {
-        return BlogPost(old.id, request.imageUrl, old.posts, old.createdAt)
+        return BlogPost(old.id, request.imageUrl, old.posts, old.createdAt, Instant.now())
     }
 }

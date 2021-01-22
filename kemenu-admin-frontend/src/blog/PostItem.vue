@@ -1,7 +1,7 @@
 <template>
   <div class="row post-item">
     <div class="col-3">
-      <router-link class="nav-link" :to="'/blog/' + blogId + '/post/' + post.id + '/update'">
+      <router-link class="nav-link" :to="'/blog/' + blogId + '/locale/' + post.locale + '/update'">
         {{ post.title }}
       </router-link>
     </div>

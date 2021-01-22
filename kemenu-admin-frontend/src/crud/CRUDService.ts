@@ -25,13 +25,9 @@ export default class CRUDService {
         }
     }
 
-    static async update<T extends Identifiable>(endpoint: string, newEntity: T, token: string): Promise<Response> {
-        if (!newEntity.id) {
-            throw new Error('Entity should have id');
-        }
-
+    static async update<T extends object>(id: string, endpoint: string, newEntity: T, token: string): Promise<Response> {
         try {
-            return await HttpClient.put(endpoint + '/' + newEntity.id, newEntity, token);
+            return await HttpClient.put(endpoint + '/' + id, newEntity, token);
         } catch (e) {
             console.error(e);
             throw new Error(e);
