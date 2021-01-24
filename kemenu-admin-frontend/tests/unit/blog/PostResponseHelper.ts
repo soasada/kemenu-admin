@@ -6,14 +6,14 @@ export function randomReadableId(): string {
 }
 
 export function randomPost(): PostResponse {
-    return new PostResponse(
-        randomReadableId(),
-        chance.sentence(),
-        chance.paragraph(),
-        chance.locale(),
-        chance.email(),
-        chance.email(),
-        chance.date().toISOString(),
-        chance.date().toISOString()
-    );
+    return {
+        readableId: randomReadableId(),
+        title: chance.sentence(),
+        content: chance.paragraph(),
+        locale: chance.locale(),
+        createdBy: chance.email(),
+        updatedBy: chance.email(),
+        createdAt: chance.date().toISOString(),
+        updatedAt: chance.date().toISOString()
+    };
 }
