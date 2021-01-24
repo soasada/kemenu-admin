@@ -6,7 +6,7 @@
 
     <ul class="list-group">
       <li class="list-group-item" v-for="post in posts" :key="post.id">
-        <PostItem :post="post"/>
+        <PostItem :post="post" :blog-id="blogId"/>
       </li>
     </ul>
   </div>
@@ -39,7 +39,7 @@ export default defineComponent({
       router.push({path: '/blog/' + blogId + '/post', query: {imageUrl: blog.imageUrl}});
     };
 
-    return {posts, createBlogPost};
+    return {blogId, posts, createBlogPost};
   }
 });
 </script>

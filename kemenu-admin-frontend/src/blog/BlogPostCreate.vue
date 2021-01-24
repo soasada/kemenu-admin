@@ -36,7 +36,7 @@ import BorderBottomTitle from '@/layout/BorderBottomTitle.vue';
 import {useRoute, useRouter} from 'vue-router';
 
 export default defineComponent({
-  name: 'BlogCreate',
+  name: 'BlogPostCreate',
   components: {
     BorderBottomTitle
   },
