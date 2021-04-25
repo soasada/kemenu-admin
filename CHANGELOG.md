@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.55 (25-04-2021)
+
+### Frontend
+
+* Replace ResponsiveTable component with DataTable from PrimeVue.
+
 ## 1.0.48 (14-01-2021)
 
 ### Backend
