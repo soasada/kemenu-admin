@@ -30,7 +30,8 @@ describe('UploadImage.vue', () => {
             files: [new File([''], 'example.png', {type: 'image/png'})]
         };
         await input.trigger('change');
-        const emittedElement = wrapper.emitted('update:modelValue')[0] as string[];
+        const eventsEmitted = wrapper.emitted('update:modelValue') ?? [];
+        const emittedElement = eventsEmitted[0] as string[];
         expect(emittedElement[0]).toStrictEqual(expectedURL);
     });
 });

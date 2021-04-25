@@ -1,4 +1,3 @@
-import Identifiable from '@/crud/Identifiable';
 import HttpClient from '@/http/HttpClient';
 
 export default class CRUDService {

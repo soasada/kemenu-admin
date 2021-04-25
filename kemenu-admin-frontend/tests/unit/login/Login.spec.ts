@@ -2,6 +2,7 @@ import {mount} from '@vue/test-utils';
 import Login from '@/login/Login.vue';
 import store from '@/store';
 import router from '@/router';
+import {createStore} from 'vuex';
 
 describe('Login.vue', () => {
     beforeEach(() => {
@@ -29,12 +30,15 @@ describe('Login.vue', () => {
         // TODO: This is a hack until vue-test-utils 2 is released
         (wrapper.vm as any).recaptchaToken = 'TOKEN';
         (wrapper.vm as any).hasRecaptchaToken = true;
-        await wrapper.vm.$nextTick();
+        await (wrapper.vm as any).$nextTick();
 
         expect(wrapper.find('button').attributes('disabled')).toBeUndefined();
     });
 
     it('Should show loading button when user clicks on Sign In', async () => {
+        const store = createStore({});
+        store.dispatch = jest.fn();
+
         const wrapper = mount(Login, {
             global: {
                 plugins: [store, router]
@@ -46,10 +50,10 @@ describe('Login.vue', () => {
         // TODO: This is a hack until vue-test-utils 2 is released
         (wrapper.vm as any).recaptchaToken = 'TOKEN';
         (wrapper.vm as any).hasRecaptchaToken = true;
-        await wrapper.vm.$nextTick();
+        await (wrapper.vm as any).$nextTick();
         await wrapper.find('form').trigger('submit.prevent');
-        await wrapper.vm.$nextTick();
+        await (wrapper.vm as any).$nextTick();
 
-        expect(wrapper.vm.loading).toBeTruthy();
+        expect((wrapper.vm as any).loading).toBeTruthy();
     });
 });

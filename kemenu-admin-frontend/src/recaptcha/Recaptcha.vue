@@ -25,7 +25,9 @@ export default defineComponent({
     const win = window as any;
 
     const resetRecaptcha = () => {
-      win.grecaptcha.reset(widgetId.value);
+      if (win.grecaptcha !== undefined) {
+        win.grecaptcha.reset(widgetId.value);
+      }
     };
 
     const renderRecaptcha = () => {
