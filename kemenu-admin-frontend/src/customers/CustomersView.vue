@@ -36,6 +36,7 @@ export default defineComponent({
     const store = useStore();
     const columns = ref<Column[]>([
       {$props: {field: 'email', header: 'Email'}},
+      {$props: {field: 'businesses.0.name', header: 'Restaurant'}},
       {$props: {field: 'role', header: 'Role'}},
       {$props: {field: 'marketingInfo.newsletterStatus', header: 'Newsletter?'}},
       {$props: {field: 'createdAt', header: 'Created At'}},
