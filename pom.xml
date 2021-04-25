@@ -12,7 +12,7 @@
     <groupId>com.kemenu.admin</groupId>
     <artifactId>kemenu-admin</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.53-SNAPSHOT</version>
+    <version>1.0.54-SNAPSHOT</version>
 
     <modules>
         <module>kemenu-admin-backend</module>
