@@ -3,7 +3,7 @@
     <parent>
         <artifactId>kemenu-admin</artifactId>
         <groupId>com.kemenu.admin</groupId>
-        <version>1.0.50-SNAPSHOT</version>
+        <version>1.0.51-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
