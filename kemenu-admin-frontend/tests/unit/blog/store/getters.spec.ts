@@ -11,7 +11,7 @@ describe('getters.ts', () => {
     };
 
     it('Should find a blog if exists', () => {
-        let blog = randomBlogPost();
+        const blog = randomBlogPost();
         blogMutations.PUSH_BLOG(state, blog);
 
         const foundBlog = blogGetters.findBlog(state, {}, {}, {})(blog.id);
