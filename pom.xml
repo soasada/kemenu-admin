@@ -20,7 +20,7 @@
 
     <properties>
         <java.version>16</java.version>
-        <kotlin.version>1.4.32</kotlin.version>
+        <kotlin.version>1.5.0</kotlin.version>
         <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
     </properties>
 
