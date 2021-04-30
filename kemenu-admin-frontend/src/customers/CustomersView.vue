@@ -1,6 +1,7 @@
 <template>
   <div class="customers">
     <BorderBottomTitle title="Customers"/>
+    <span v-if="store.getters.isLoadingCustomers" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     <DataTable :value="store.getters.getAllCustomers" v-model:filters="filters" :paginator="true" :rows="10" responsiveLayout="scroll">
       <template #header>
         <div class="p-d-flex p-jc-between">
